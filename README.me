@@ -1,0 +1,56 @@
+                                       USER APP API
+  What is it?
+  -----------
+  In this API you can create users, users are recording to the database,
+  you can receive them.You can generate user data, generate user positions and put it all in database.
+
+  Prerequisites
+  -------------
+  1. Install npm with command : npm install -g npm
+  2. Go to this project local and run : npm install
+  3. Install node.js : https://nodejs.org/uk/download/
+  4. Install PostgreSQL : https://www.postgresql.org/download/
+  5. Install Postman for testing your requests: https://www.postman.com/downloads/
+
+  How to use it?
+  -------------
+  1) write in command line command for seed user data :  node seeders/userData.js
+
+  2) write in command lime command for seer user positions :  node seeders/positions.js
+
+  3) write in command line command : npm start
+
+  4) go to postman
+
+  5) For generate token you need create GET request to this url(http://localhost:8080/api/v1/token)
+    and you get json response with data for example : {
+
+    "success": true,
+    "token": "0dc413f1-8458-490d-81fd-1e493866475a"
+
+    }
+    You need copy this token for create a user on the next step.Token work only 40 minutes.
+
+  6) For create user you need create POST request to this url(http://localhost:8080/api/v1/user/)
+     Firstly go to Headers ,create key [x-access-token] and put here value of generated token, after
+     go to Body/form-data with data for example : {
+     KEY     VALUE
+     name     John
+     email    johndoe@gmail.com
+     phone    +380695336688
+     password  johndoe1968
+     positionId    4
+     image      select file
+         }
+
+   7) For get users you need create GET request to this url (http://localhost:8080/api/v1/users)
+      You will get first 5 users from database,
+      for get next users you need write http://localhost:8080/api/v1/users?page=1&size=10,
+      default values are: page=1, size=5, maximum size=10
+
+   8)  For get 1 user you need create GET request to this url (http://localhost:8080/api/v1/user/1)
+       IMPORTANT!
+       you need write id in parameters in query of your user which you need to get
+
+   9) For get list of positions you need create GET request to this url (http://localhost:8080/api/v1/positions)
+
